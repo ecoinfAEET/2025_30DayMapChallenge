@@ -1,0 +1,34 @@
+---
+title: "30 Day Map Challenge - Ecoinformática AEET"
+author: "<insert your name!>"
+date: "2025-10-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 30 Day Map Challenge - 30_Makeover
+
+### Day callenge description
+
+Take a map you made during the month or an older piece and redesign it. Focus on improving the aesthetics, clarity, or data communication.
+
+### Something about the map!
+Tell us something about your map here (if you want!)  \ 
+
+Cuéntanos aquí algo sobre tu mapa (si quieres!)
+
+```{r create_map}
+
+# Deja aquí el código para hacer tu mapa!
+
+#plotéalo!
+plot(map)
+
+# guárdalo!
+png() / ggsave()
+```
+
+
