@@ -1,0 +1,34 @@
+---
+title: "30 Day Map Challenge - Ecoinformática AEET"
+author: "<insert your name!>"
+date: "2025-10-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 30 Day Map Challenge - 29_Raster
+
+### Day callenge description
+
+Challenge Classic: Map using raster data. Focus on satellite imagery, elevation models (DEMs), land cover, or pixel-based art.
+
+### Something about the map!
+Tell us something about your map here (if you want!)  \ 
+
+Cuéntanos aquí algo sobre tu mapa (si quieres!)
+
+```{r create_map}
+
+# Deja aquí el código para hacer tu mapa!
+
+#plotéalo!
+plot(map)
+
+# guárdalo!
+png() / ggsave()
+```
+
+
