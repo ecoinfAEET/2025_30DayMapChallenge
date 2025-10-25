@@ -1,0 +1,34 @@
+---
+title: "30 Day Map Challenge - Ecoinformática AEET"
+author: "<insert your name!>"
+date: "2025-10-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 30 Day Map Challenge - 02_Lines
+
+### Day callenge description
+
+Challenge Classic: Map linear features (e.g., roads, rivers, migration paths, flow lines). Explore line thickness, color, and direction to convey information.
+
+### Something about the map!
+Tell us something about your map here (if you want!)  \ 
+
+Cuéntanos aquí algo sobre tu mapa (si quieres!)
+
+```{r create_map}
+
+# Deja aquí el código para hacer tu mapa!
+
+#plotéalo!
+plot(map)
+
+# guárdalo!
+png() / ggsave()
+```
+
+
