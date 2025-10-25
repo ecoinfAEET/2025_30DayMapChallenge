@@ -5,7 +5,7 @@ Reto colaborativo, noviembre, 2025
 
 Instrucciones para participar:
 
-1.  Selecciona un día en la [tabla](https://tinyurl.com/2ba78kmk) y apúntate al día que quieras! Déjanos tu usuario de GitHub para que podamos darte acceso al repo!
+1.  Selecciona el día en la [tabla](https://tinyurl.com/2ba78kmk) que más te guste y apúntate! Déjanos tu usuario de GitHub para que podamos darte acceso al repo!
 
 2.  En la rama correspondiente al día, edita el RMarkdown con el código para que renderice el mapa que hayas hecho (ecuerda incluir todos los datos en la carpeta del día, dentro de *2025_30DayMapChallenge_files*, **no te olvides de hacer *knit***)!
 
