@@ -1,0 +1,34 @@
+---
+title: "30 Day Map Challenge - Ecoinformática AEET"
+author: "<insert your name!>"
+date: "2025-10-13"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 30 Day Map Challenge - 13_10 minute map
+
+### Day callenge description
+
+Start the timer! The maximum allowed time to design and produce this map is 10 minutes. Focus on speed, simplicity, and core communication.
+
+### Something about the map!
+Tell us something about your map here (if you want!)  \ 
+
+Cuéntanos aquí algo sobre tu mapa (si quieres!)
+
+```{r create_map}
+
+# Deja aquí el código para hacer tu mapa!
+
+#plotéalo!
+plot(map)
+
+# guárdalo!
+png() / ggsave()
+```
+
+
