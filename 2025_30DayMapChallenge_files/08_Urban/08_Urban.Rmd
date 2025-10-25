@@ -1,0 +1,34 @@
+---
+title: "30 Day Map Challenge - Ecoinformática AEET"
+author: "<insert your name!>"
+date: "2025-10-08"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 30 Day Map Challenge - 08_Urban
+
+### Day callenge description
+
+(World Urbanism Day) Map the built environment: dense street networks, highrises, urban sprawl, city infrastructure, or population density within a metro area.
+
+### Something about the map!
+Tell us something about your map here (if you want!)  \ 
+
+Cuéntanos aquí algo sobre tu mapa (si quieres!)
+
+```{r create_map}
+
+# Deja aquí el código para hacer tu mapa!
+
+#plotéalo!
+plot(map)
+
+# guárdalo!
+png() / ggsave()
+```
+
+
