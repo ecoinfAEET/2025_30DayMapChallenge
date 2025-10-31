@@ -1,6 +1,6 @@
 ---
 title: "30 Day Map Challenge - Ecoinformática AEET"
-author: "<insert your name!>"
+author: "Ignacio Ramos-Gutiérrez"
 date: "2025-10-01"
 output: html_document
 ---
@@ -18,7 +18,7 @@ Challenge Classic: Map with point data (e.g., individual locations, points of in
 ### Algo sobre el mapa...
 En el primer día del reto vamos a hacer un mapa de puntos interactivo... ¡con las ubicaciones de nuestros compañeros y compañeras del Grupo de Trabajo en Ecoinformática!
 
-Este mapa está también dispnible en la pestaña "Miembros" de nuestra web (<https://ecoinfaeet.github.io/miembros.html>)!
+Este mapa está también disponible en la pestaña "Miembros" de nuestra web (<https://ecoinfaeet.github.io/miembros.html>)!
 
 ```{r, include=FALSE, echo=FALSE}
 library(here)
