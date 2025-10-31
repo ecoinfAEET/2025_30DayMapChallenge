@@ -15,20 +15,62 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Challenge Classic: Map with point data (e.g., individual locations, points of interest, clusters). Focus on effective symbolization and density visualization.
 
-### Something about the map!
-Tell us something about your map here (if you want!)  \ 
+### Algo sobre el mapa...
+En el primer día del reto vamos a hacer un mapa de puntos interactivo... ¡con las ubicaciones de nuestros compañeros y compañeras del Grupo de Trabajo en Ecoinformática!
 
-Cuéntanos aquí algo sobre tu mapa (si quieres!)
+Este mapa está también dispnible en la pestaña "Miembros" de nuestra web (<https://ecoinfaeet.github.io/miembros.html>)!
+
+```{r, include=FALSE, echo=FALSE}
+library(here)
+source(here("2025_30DayMapChallenge_files/01_Points/files/map_functions.R"))
+
+member.table <- gsheet::gsheet2tbl("19J9P-is9eJWoDN7_agmSeu5S5YgD4JZIoe_FtZ-G3EQ") |> 
+  format_member_table() |> 
+  unique()
+  # dplyr::distinct()
+
+# read institution coordinates and only search for the new ones
+coords.table <- read.csv(here("2025_30DayMapChallenge_files/01_Points/files/institutioncoords.csv")) |> 
+  update_coord_table(member.table = member.table) |> 
+  unique()
+  # dplyr::distinct()
+
+
+# combine both table by its affiliation and add coordinates (POINTS)
+member.table.coords <- merge(member.table, coords.table, all.x = TRUE) |> 
+  subset(!is.na(lon)) 
+member.table.coords$lon <- as.numeric(member.table.coords$lon)
+member.table.coords$lat <- as.numeric(member.table.coords$lat)
+
+  member.table.coords$weblink <- paste0('<a href="', 
+                         'https://ecoinfaeet.github.io/miembros/', 
+                         iconv(gsub(" ", "_", member.table.coords$`Nombre y apellidos`), 
+                               from = 'UTF-8', to = 'ASCII//TRANSLIT'),
+                         ".html",
+                         '" target="_blank">', member.table.coords$`Nombre y apellidos`, 
+                         '</a>')
+
+# plot map
+
+custom_icon <- leaflet::makeIcon(
+  iconUrl = here("2025_30DayMapChallenge_files/01_Points/files/location_custom.png"),
+  iconWidth = 20, iconHeight = 25,
+  iconAnchorX = 25, iconAnchorY = 25
+)
+```
 
 ```{r create_map}
+library(leaflet)
 
-# Deja aquí el código para hacer tu mapa!
+leaflet(member.table.coords) |> 
+  setView(-2.69, 40.31, zoom = 5.35) |> 
+  addTiles(options = providerTileOptions(noWrap = TRUE)) |> 
+  addMarkers(popup = ~(weblink), 
+             label = member.table.coords$`Nombre y apellidos`,
+             
+             clusterOptions = markerClusterOptions(),
+             icon = custom_icon)
 
-#plotéalo!
-plot(map)
-
-# guárdalo!
-png() / ggsave()
 ```
 
 
