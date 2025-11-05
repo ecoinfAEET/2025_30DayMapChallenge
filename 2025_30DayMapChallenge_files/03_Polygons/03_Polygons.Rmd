@@ -1,8 +1,15 @@
 ---
 title: "30 Day Map Challenge - Ecoinformática AEET"
-author: "<insert your name!>"
+author: "Mónica Gómez-Vadillo ([GitHub: @mgomezzv26](https://github.com/mgomezzv26))"
 date: "2025-10-03"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+    theme: flatly
+    highlight: tango
+lang: es
+author-url: "https://github.com/mgomezv26"
 ---
 
 ```{r setup, include=FALSE}
@@ -16,19 +23,18 @@ knitr::opts_chunk$set(echo = TRUE)
 Challenge Classic: Create a map focused on area features (e.g., administrative regions, land use, boundaries). Use fills, patterns, and choropleth techniques.
 
 ### Something about the map!
-Tell us something about your map here (if you want!)  \ 
 
-Cuéntanos aquí algo sobre tu mapa (si quieres!)
+Mean Annual Temperature - Spain (WorldClim v2.1, 2.5 min resolution)
+This map shows the mean annual temperature (BIO1 variable) across Spanish provinces, using bioclimatic data from WorldClim v2.1.
+The map combines administrative boundaries from the Instituto Geográfico Nacional (IGN) with high-resolution climate raster data to illustrate spatial temperature gradients across the Iberian Peninsula.
 
-```{r create_map}
+**Technical note:**  
 
-# Deja aquí el código para hacer tu mapa!
+This map was created using **Python** in a Jupyter Notebook.  
+The full code used to generate the figure can be found in the accompanying file:  
+➡️ `03_Polygons.ipynb`
 
-#plotéalo!
-plot(map)
-
-# guárdalo!
-png() / ggsave()
+```{r mapa_antiguo, echo=FALSE, out.width='100%', fig.cap="Mean Annual Temperature – Spain"}
+knitr::include_graphics("Mean_Annual_Temperature_Spain.png")
 ```
-
 
