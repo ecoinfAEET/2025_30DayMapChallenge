@@ -65,7 +65,10 @@ world |>
   ggplot() + 
   geom_sf(aes(fill = waste_per_capita), color = "grey40", linewidth = 0.1) +
   coord_sf(crs = "+proj=robin") + #robinson
-  scale_fill_stepsn(colours = paletteer_d("PNWColors::Shuksan", direction = -1)) +
+  # scale_fill_stepsn(colours = paletteer_d("PNWColors::Shuksan", direction = -1), 
+  #                   limits = c(0,1), na.value = "grey60", n.breaks = 8) +
+  scale_fill_gradientn(colours = paletteer_d("PNWColors::Shuksan", direction = -1),
+                    limits = c(0,1), na.value = "grey60") +
   theme_minimal(base_family = "roboto_condensed") +
   theme(axis.text = element_blank(),
         panel.grid.major = element_line(color = "grey90", linewidth = 0.2),
@@ -74,7 +77,8 @@ world |>
         legend.title = element_text(hjust = 0.5),
         plot.title = element_text(hjust = 0.5),
         title = element_text(size = 30),
-        legend.text = element_text(size = 23)) + 
+        legend.text = element_text(size = 23)
+        ) + 
   labs(fill = "tonnes/person/year",
        title = "Waste generation per capita",
        caption = "Data from World Bank")
