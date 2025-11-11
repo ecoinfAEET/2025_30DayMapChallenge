@@ -1,0 +1,50 @@
+---
+title: "30 Day Map Challenge - Ecoinformática AEET"
+author: "Julia G. de Aledo"
+date: "2025-10-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 30 Day Map Challenge - 11_Minimal map
+
+### Day callenge description
+
+The countries of the world, keeping only the 0.1% fo the points of their polygons.
+
+### Something about the map!
+
+It is inspired by the code of Georgios Karamanis in his [2022 mapchallenge](https://github.com/gkaramanis/30DayMapChallenge/blob/main/2022/16-minimal-world).
+
+The title, subtitle, roundness, shadow are made separately in Figma.
+
+```{r create_map}
+
+# Deja aquí el código para hacer tu mapa!
+library(rnaturalearth)
+library(rmapshaper)
+library(dplyr)
+library(ggplot2)
+
+#plotéalo!
+world_data <- ne_countries(scale = "medium", returnclass = "sf")
+
+world_contour = world_data$geometry
+
+world2 <- world_data %>% rmapshaper::ms_simplify(keep = 0.001) 
+
+ggplot(world2)+
+  geom_sf(fill="#5B507A", color="#5B507A")+
+  coord_sf()+
+  theme_void()+
+  theme(panel.background = element_rect(fill = "#A9CDC1"))
+
+# guárdalo!
+ggsave("day11.svg")
+ggsave("day11.png")
+```
+
+
