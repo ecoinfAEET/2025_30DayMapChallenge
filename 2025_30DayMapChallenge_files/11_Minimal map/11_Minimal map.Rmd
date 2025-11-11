@@ -28,7 +28,7 @@ library(rnaturalearth)
 library(rmapshaper)
 library(dplyr)
 library(ggplot2)
-
+library(here)
 #plotéalo!
 world_data <- ne_countries(scale = "medium", returnclass = "sf")
 
@@ -43,8 +43,9 @@ ggplot(world2)+
   theme(panel.background = element_rect(fill = "#A9CDC1"))
 
 # guárdalo!
-ggsave("day11.svg")
-ggsave("day11.png")
+here()
+ggsave("2025_30DayMapChallenge_files/11_Minimal map/day11.svg")
+ggsave("2025_30DayMapChallenge_files/11_Minimal map/day11.png")
 ```
 
 
