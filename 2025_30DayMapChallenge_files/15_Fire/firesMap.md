@@ -199,7 +199,7 @@ combined<-(ggobj1 | ggobj2) +
                   )
 combined
 ```
-![](15_Fire/15_fires.png)<!-- -->
+![15Fire_CombinedMap](https://github.com/ecoinfAEET/2025_30DayMapChallenge/blob/15_Fire/2025_30DayMapChallenge_files/15_Fire/15_fires.png)<!-- -->
 
 ```r
 # save results in a
