@@ -25,9 +25,6 @@ However, feel free to use any other repository you prefer.
 Since the spatial resolution used in this example are municipalities in Spain, I downloaded the data from [here](https://centrodedescargas.cnig.es/CentroDescargas/limites-municipales-provinciales-autonomicos). Be aware that any other spatial resolutions, such as grid, provinces, counties in other countries, national boundaries, could be also used depending on your needs!
 
 
-First at all: load the layers you are interested:
-
-
 ```r 
 library(tidyverse) # data management
 library(sf)        # vector spatial data 
@@ -36,8 +33,11 @@ library(viridis)   # palette
 ```
 
 ```r 
-setwd("F:/IREC/PhD/D/Docs/Sonia/1_Colaboraciones/202511_MapChallengeAEET/2025_30DayMapChallenge/2025_30DayMapChallenge_files/")
+setwd("2025_30DayMapChallenge_files/")
 ```
+### Load the data
+
+First at all: load the layers you are interested.
 
 ```r
 fires<-st_read("./data/effis_layer/modis.ba.poly.shp", quiet=TRUE) %>% st_transform(3035)
@@ -47,8 +47,9 @@ muni<-st_read("./data/lineas_limite/SHP_ETRS89/recintos_municipales_inspire_peni
 muni$area_ha<-st_area(muni)/10000 # calculate municipalities area in ha
 attributes(muni$area_ha)<-NULL  # remove ha attribute from the col
 ```
+### Data preparation
 
-Intersect the fire layer with the spatial polygon layer that you're interested, in our case Spanish municipalities:
+Intersect the fire layer with the spatial polygon layer that you're interested, in our case Spanish municipalities.
 
 ```r
 # it could take some time to do it depending on your computer, be patient!
@@ -57,7 +58,7 @@ intersections<-intersections %>% mutate(area_ha.fire=st_area(geometry)/10000)
 attributes(intersections$area_ha.fire)<-NULL
 ```
 
-Group fires per municipality and sum number of fires and surface burnt in each one:
+Group fires per municipality and sum number of fires and surface burnt in each one.
 
 ```r
 fires<-intersections %>% as_tibble() %>% mutate(count=1) %>% 
@@ -67,7 +68,7 @@ fires<-intersections %>% as_tibble() %>% mutate(count=1) %>%
 
 ```
 
-Join the information of fires from the intersection with the municipalities by their ID codes:
+Join the information of fires from the intersection with the municipalities by their ID codes.
 
 ```r
 # ID code = NATCODE & NAMEUNIT
@@ -80,12 +81,17 @@ fires2<- fires2 %>% rename(area_ha.tm=area_ha) %>%
 
 ```
 
-Save results in a geopackge (.gpkg) or any other vector layer format:
+Save results in a geopackge (.gpkg) or any other vector layer format.
 ```r
 st_write(fires2, "15Fires.gpkg", layer="FiresTM")
 ```
 
-Plot results
+### Plot
+
+Let's plot the fire map! 
+
+First I will create a map showing the number of fires produced in each municipality over 2016-2025. 
+
 ```r
 pal_inferno_black <- c("black", inferno(10)[2:10])
 prov<-st_read("./data/lineas_limite/SHP_ETRS89/recintos_provinciales_inspire_peninbal_etrs89/recintos_provinciales_inspire_peninbal_etrs89.shp",
@@ -129,6 +135,8 @@ tm_shape(prov)+
 # p1 
 ```
 
+Second, I will create a map showing the area burned in each municipality relative to its total surface (%) for the same period. 
+
 ```r
 p2<-
 tm_shape(fires2) +
@@ -168,6 +176,8 @@ tm_shape(prov)+
 # p2
 ```
 
+Finally, I will combine both maps to produce a single map.
+
 ```r
 library(grid)
 library(gridExtra)
@@ -200,6 +210,8 @@ combined<-(ggobj1 | ggobj2) +
 combined
 ```
 ![15Fire_CombinedMap](https://github.com/ecoinfAEET/2025_30DayMapChallenge/blob/15_Fire/2025_30DayMapChallenge_files/15_Fire/15_fires.png)<!-- -->
+
+Save the map as an image:
 
 ```r
 # save results in a
