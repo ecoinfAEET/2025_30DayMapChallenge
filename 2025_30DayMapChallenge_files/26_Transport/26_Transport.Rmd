@@ -1,12 +1,12 @@
 ---
 title: "30 Day Map Challenge - Ecoinformática AEET"
-author: "<insert your name!>"
-date: "2025-10-26"
+author: "Ignacio Ramos-Gutiérrez"
+date: "2025-11-26"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE, warning = F)
 ```
 
 ## 30 Day Map Challenge - 26_Transport
@@ -16,19 +16,77 @@ knitr::opts_chunk$set(echo = TRUE)
 (World Sustainable Transport Day) Map mobility, traffic flow, public transit networks, logistics chains, or advocate for sustainable transport options.
 
 ### Something about the map!
-Tell us something about your map here (if you want!)  \ 
+Durante el año 2024-2025 estuve trabajando en la universidad de Sevilla, y (casi) todos los días iba a trabajar en bicicleta.
 
-Cuéntanos aquí algo sobre tu mapa (si quieres!)
+Este mapa muestra las rutas que realicé durante ese curso!
 
-```{r create_map}
 
-# Deja aquí el código para hacer tu mapa!
 
-#plotéalo!
-plot(map)
+```{r load_mapdata}
 
-# guárdalo!
-png() / ggsave()
+library(here)
+library(terra)
+library(osmdata)
+library(tidyverse)
+library(ggplot2)
+library(tidyterra)
+
+sev_pol <- vect("files/pol/sevilla_district.gpkg")  
+
+streets_raw <- getbb("Seville Spain") |>
+  opq()|>
+  add_osm_feature(key = "highway", 
+                  value = c("residential", "living_street", "unclassified", "service", "footway")) |> #
+  osmdata_sf()
+street <- terra::vect(streets_raw$osm_lines) |> 
+  terra::crop(sev_pol)
+
+river_raw <- getbb("Seville Spain") |> 
+  opq()|>
+  add_osm_feature(key = "water", 
+                  value = c("river", "canal")) |>
+  osmdata_sf()
+river <- terra::vect(river_raw$osm_polygons) |> 
+  terra::crop(sev_pol)
 ```
 
+```{r load_info}
+bikes <- list.files(here("files/gpx"), pattern = "gpx", full.names = T) # not uploaded to avoid storage issues
+routes <- vector("list", length = length(bikes))
+for(i in 1:length(bikes)){
+  routes[[i]] <- as.lines(vect(bikes[i],"track_points"))
+}
+
+routes_compl <- routes[[1]]
+for(i in 2:length(routes)){
+  routes_compl <- terra::union(routes_compl, routes[[i]])
+}
+routes_compl <- crop(routes_compl, sev_pol)
+  
+```
+
+```{r create_map}
+bikeplot <- ggplot()+
+   # geom_spatvector(data = sev_pol, col = "black", fill="black")+
+   geom_spatvector(data = street, col = "#FAFAFA77")+
+   geom_spatvector(data = river, fill="aliceblue", col = "transparent")+
+   geom_spatvector(data = routes_compl, col = "#FF000088")+
+   
+   annotate("text", x=-5.945, y=37.43, 
+            label= "Un año por\nSEVILLA\nen bici\n \U1F6B2 ", 
+            colour = "white", size = 8,
+            family= "Lucida Console") +
+  
+   theme(panel.background = element_rect(fill="black", color = "black"),
+         plot.background = element_rect( fill="black", color = "black"),
+         panel.grid = element_blank(),
+         axis.text = element_blank(),
+         axis.ticks = element_blank(),
+         legend.position = "none")
+
+ ggsave(here("sebici.png"), plot = bikeplot, height = 297, width = 210, units = "mm", dpi = 450)
+ 
+```
+
+![Mapa del día 26: "transport"](sebici.png)
 
