@@ -1,7 +1,7 @@
 ---
 title: "30 Day Map Challenge - Ecoinformática AEET"
-author: "<insert your name!>"
-date: "2025-10-19"
+author: "Ignacio  Ramos-Gutiérrez"
+date: "2025-11-19"
 output: html_document
 ---
 
