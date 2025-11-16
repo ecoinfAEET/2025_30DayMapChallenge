@@ -16,19 +16,27 @@ knitr::opts_chunk$set(echo = TRUE)
 Challenge Classic: Experimentation is key! Create your map using a software, language, library, or technique you have never used before.
 
 ### Something about the map!
-Tell us something about your map here (if you want!)  \ 
+Mapa de estrellas una noche en un pueblo del Pirineo aragonés...
 
-Cuéntanos aquí algo sobre tu mapa (si quieres!)
+El mapa está hecho con python con las librerías principales Numpy, Matplotlib, Skyfield y Datetime, siguiendo el tutorial de Viyaleta Apgar (https://viyaleta.medium.com/how-to-make-a-sky-map-in-python-a362bf722bb2) y con ayuda para su transformación en un gif de Claude. 
 
-```{r create_map}
+Para mí, la mejor manera de que funcionase ha sido creando un environment e instalando ahí todas las librerías y dependencias. 
 
-# Deja aquí el código para hacer tu mapa!
+Para ello, en primer lugar nos aseguramos de que tenemos [python](https://www.python.org/downloads/) instalado en nuestro sistema. Podemos comprobar si está correctamente instalado ejecutando el comando en una consola de comandos como CMD o Powershell si estamos utilizando Windows.
 
-#plotéalo!
-plot(map)
-
-# guárdalo!
-png() / ggsave()
 ```
+python --version
+```
+
+Después descargamos el archivo sky_map.py y el archivo requirements.txt, y los metemos en una carpeta. Dentro de esa carpeta, desde la terminal podemos preparar nuestro espacio de trabajo para ejecutar la herramienta de manera aislada y sin contaminar el resto de nuestro sistema, con un environment:
+
+```
+python -m venv env
+.\env\Scripts\Activate
+pip install -r requirements.txt
+```
+
+Y ahora ya en principio, desde dentro del environment, deberíamos poder hacer el mapa con `python sky_map.py` o `python3 sky_map.py`.
+El mapa saldrá como cielo_nocturno_artieda.gif
 
 
