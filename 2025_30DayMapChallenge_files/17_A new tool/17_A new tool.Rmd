@@ -1,6 +1,6 @@
 ---
 title: "30 Day Map Challenge - Ecoinformática AEET"
-author: "<insert your name!>"
+author: "Alberto Cirera Sancho"
 date: "2025-10-17"
 output: html_document
 ---
