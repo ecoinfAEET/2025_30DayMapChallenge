@@ -1,0 +1,46 @@
+---
+title: "30 Day Map Challenge - Ecoinformática AEET"
+author: "Ignacio  Ramos-Gutiérrez"
+date: "2025-11-19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 30 Day Map Challenge - 19_Projections
+
+### Day callenge description
+
+(GIS Day) Focus entirely on map projections. Choose an unusual or misunderstood projection to highlight a theme, or visualize distortion.
+
+### Something about the map!
+Para el reto de hoy, había intentado incorporar proyecciones raras (especialmente discontinuas) a mapas globales. 
+
+Como no sabía mucho del tema, buscando por internet encontré [esta implementación desde archivos js](https://github.com/d3/d3-geo-projection/),y con ayuda de chatGPT (tengo que reconocer que se ha utilizado una cantidad de agua considerable para llegar a esto) he conseguido plotear algunos mapas con proyecciones curiosas.
+
+
+Lamentablemente, para los mapas interrumpidos (que eran los que más me interesaban; e.g. PolyhedralButterfly o PolyhedralWaterman), he sido incapaz de evitar artefactos, pero aún así se pueden generar unos cuantos mapas chulos (en mi opinión). 
+
+Para dibujarlos usaremos los datos de `rnaturalearth`, y la función creada *ad-hoc* en el archivo `d3map.R`.
+
+
+```{r load_data, echo=F, warning=FALSE, message=FALSE}
+library(r2d3)
+library(rnaturalearth)
+library(here)
+
+source(here("2025_30DayMapChallenge_files/19_Projections/d3map.R"))
+# Load world map
+world <- ne_countries(scale = "medium", returnclass = "sf")
+```
+
+```{r create_maps}
+plot_d3_map(world, projection = "August",              save_file = here("2025_30DayMapChallenge_files/19_Projections/August.png"))
+plot_d3_map(world, projection = "Bonne",               save_file = here("2025_30DayMapChallenge_files/19_Projections/Bonne.png"))
+plot_d3_map(world, projection = "PolyhedralButterfly", save_file = here("2025_30DayMapChallenge_files/19_Projections/PolyhedralButterfly.png"))
+plot_d3_map(world, projection = "PeirceQuincuncial",   save_file = here("2025_30DayMapChallenge_files/19_Projections/PeirceQuincuncial.png"))
+```
+
+
