@@ -77,6 +77,11 @@ bikeplot <- ggplot()+
             colour = "white", size = 8,
             family= "Lucida Console") +
   
+  annotate("text", x=-5.95, y=37.34, 
+            label= "#30DayMapChallenge 2025", 
+            colour = "white", size = 5,
+            family= "Lucida Console") +
+  
    theme(panel.background = element_rect(fill="black", color = "black"),
          plot.background = element_rect( fill="black", color = "black"),
          panel.grid = element_blank(),
@@ -84,7 +89,7 @@ bikeplot <- ggplot()+
          axis.ticks = element_blank(),
          legend.position = "none")
 
- ggsave(here("sebici.png"), plot = bikeplot, height = 297, width = 210, units = "mm", dpi = 450)
+ ggsave(here("sebici.png"), plot = bikeplot, height = 297, width = 210, units = "mm", dpi = 600)
  
 ```
 
